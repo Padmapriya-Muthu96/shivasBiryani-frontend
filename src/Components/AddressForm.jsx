@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+
+const API_BACKEND=import.meta.env.VITE_API_URL;
+
 function AddressForm() {
 
     const navigate=useNavigate();
@@ -61,7 +64,7 @@ const goToPayment=()=>{
     }
 
     try {
-        const res = await axios.post('http://localhost:3000/user-address', formData, {
+        const res = await axios.post(`${API_BACKEND}/user-address`, formData, {
             headers: {
               'Content-Type': 'application/json'
             }
@@ -81,7 +84,15 @@ const goToPayment=()=>{
   return (
     <div className="container mt-4">
       <h3>User Address Form</h3>
-      {message && <div className="alert alert-info">{message}</div>}
+      {message && <div className="alert"
+      style={{
+      backgroundColor: message === 'user details added successfully' ? '#79f797' : '#f55f64',
+      color: 'black',
+      padding: '10px',
+      borderRadius: '5px',
+      marginBottom: '15px'
+    }}
+      >{message}</div>}
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label>Name</label>

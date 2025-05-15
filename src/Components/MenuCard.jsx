@@ -12,6 +12,8 @@ import eggfryrice from '../assets/eggfryrice.png';
 import chickfryrice from '../assets/chickfryrice.png';
 import egggravy from '../assets/egggravy.png'; // Make sure all images exist
 
+const API_BACKEND=import.meta.env.VITE_API_URL;
+
 const imageMap = {
   'chicken Biryani': chick,
   'seerakasamba chicken Biryani': chickss,
@@ -30,12 +32,12 @@ function MenuDisplay() {
   const { addToCart } = useCart();
 
   useEffect(() => {
-    axios.get('http://localhost:3000/available-menu')
+    axios.get(`${API_BACKEND}/available-menu`)
       .then(res => setMenuItems(res.data))
       .catch(err => console.error(err));
   }, []);
   const handleAddtoCart = (item) => {
-    axios.post('http://localhost:3000/user-menu', {
+    axios.post(`${API_BACKEND}/user-menu`, {
       menu: item.item,
       qty: 1
     })

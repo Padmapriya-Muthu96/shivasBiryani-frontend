@@ -69,7 +69,7 @@ const PaymentForm = () => {
   return (
     <div className="container mt-4">
       <h3>Choose Payment Method</h3>
-      {message && <div className="alert alert-info">{message}</div>}
+      {message && <div className="alert" style={{backgroundColor:'#9db9fc'}}>{message}</div>}
       <form onSubmit={handlePayment}>
         <div className="form-check">
           <input
